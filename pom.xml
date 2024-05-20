@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.sqstokafkatodynamo</groupId>
+	<artifactId>sqsToKafkaToDynamoDB</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>sqsToKafkaToDynamoDB</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+		<camel.version>4.5.0</camel.version>
+		<!--<kafka.version>3.1.0</kafka.version>-->
+		<aws.sdk.version>2.17.93</aws.sdk.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-spring-boot-starter</artifactId>
+			<version>4.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Apache Camel dependencies -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<!-- we use the endpoint-dsl -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-endpointdsl</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-kafka-starter</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-kafka</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-aws2-ddb</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+
+		<!-- AWS SDK Core -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-core</artifactId>
+			<version>1.11.980</version> <!-- or the latest version -->
+		</dependency>
+		<!--<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>aws-sdk-java</artifactId>
+			<version>2.17.105</version> &lt;!&ndash; Replace '2.17.105' with the desired version &ndash;&gt;
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>s3</artifactId>
+			<version>2.17.105</version> &lt;!&ndash; Replace '2.17.105' with the desired version &ndash;&gt;
+		</dependency>-->
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-aws2-s3</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+
+		<!--<dependency>
+			<groupId>con.amazon.awssdk</groupId>
+			<artifactId>sts</artifactId>
+			<version>1.11.980</version> &lt;!&ndash; Adjust version as needed &ndash;&gt;
+		</dependency>-->
+
+		<!-- we use these 2 camel components in this example -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-aws2-sqs</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-aws2-sqs-starter</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+
+		<!-- AWS SDK DynamoDB -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>1.11.980</version> <!-- or the latest version -->
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- to run the application -->
+			<plugin>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-maven-plugin</artifactId>
+				<version>${camel.version}</version>
+				<configuration>
+					<mainClass>org.apache.camel.example.SqsToKafkaToDynamoDbApplication</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
